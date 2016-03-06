@@ -37,6 +37,20 @@ public class WebStore2Controller
         }
     }
 
+    @RequestMapping("/removeProduct")
+    public String removeProduct(@RequestParam(value="name") String name)
+    {
+        if (this.products.containsKey(name))
+        {
+            this.products.remove(name);
+            return "Product " + name + " has been removed from stock.";
+        }
+        else
+        {
+            return "Product " + name + " is not in stock.";
+        }
+    }
+
     @RequestMapping("/updateProductName")
     public String updateProductName(@RequestParam(value="oldName") String oldName,
                                     @RequestParam(value="newName") String newName)
@@ -85,5 +99,5 @@ public class WebStore2Controller
         }
     }
 
-    
+
 }
