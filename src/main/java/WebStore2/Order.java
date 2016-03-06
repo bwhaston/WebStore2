@@ -1,44 +1,27 @@
 package WebStore2;
 
-import java.util.HashSet;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class Order
 {
-    private final long id;
-    private HashSet<Product> products = new HashSet<Product>();
-    private boolean confirmed;
+    private String name;
+    private HashMap<String, Product> products = new HashMap<String, Product>();
+    private int orderTotal;
 
-    public Order(long id, Product product)
+    public Order(String name)
     {
-        this.id = id;
-        this.products.add(product);
+        this.name = name;
     }
 
-    public long getId()
+    public Collection<Product> getProducts()
     {
-        return this.id;
-    }
-
-    public HashSet<Product> getProducts()
-    {
-        return this.products;
-    }
-
-    public boolean isConfirmed()
-    {
-        return this.confirmed;
+        return this.products.values();
     }
 
     public void addProduct(Product newProduct)
     {
-        this.products.add(newProduct);
-    }
-
-    public void confirmOrder()
-    {
-        if(this.confirmed == false)
-        {
-            this.confirmed = true;
-        }
+        this.products.put(newProduct.getProductName(), newProduct);
+        this.orderTotal += newProduct.getPrice();
     }
 }

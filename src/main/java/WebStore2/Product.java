@@ -6,14 +6,12 @@ public class Product
 {
     private String productName;
     private String productDescription;
-    private final long id;
     private int price;
 
-    public Product(String productName, String productDescription, long id, int price)
+    public Product(String productName, String productDescription, int price)
     {
         this.productName = productName;
         this.productDescription = productDescription;
-        this.id = id;
         this.price = price;
     }
 
@@ -25,11 +23,6 @@ public class Product
     public String getProductDescription()
     {
         return this.productDescription;
-    }
-
-    public long getId()
-    {
-        return this.id;
     }
 
     public int getPrice()
@@ -54,6 +47,6 @@ public class Product
 
     public String toString()
     {
-        return this.productName + ", " + this.productDescription + ", " + this.id + ", " + "$" + this.price;
+        return this.productName + ", " + this.productDescription + ", " + "$" + this.price;
     }
 }

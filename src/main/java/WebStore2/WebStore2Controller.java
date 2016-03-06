@@ -1,5 +1,6 @@
 package WebStore2;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WebStore2Controller
 {
-    private final AtomicLong counter = new AtomicLong();
-    private HashMap<String, Product> products = new HashMap<String, Product>();
+    public HashMap<String, Product> products = new HashMap<String, Product>();
     private HashMap<String, Order> orders = new HashMap<String, Order>();
 
     @RequestMapping("/addNewProduct")
@@ -25,7 +25,6 @@ public class WebStore2Controller
         {
             Product newProduct = new Product(String.format(nameTemplate, name),
                                              String.format(descriptionTemplate, description),
-                                             counter.incrementAndGet(),
                                              price);
 
             this.products.put(name, newProduct);
@@ -99,5 +98,25 @@ public class WebStore2Controller
         }
     }
 
+    @RequestMapping("/showProducts")
+    public Collection<Product> showProducts()
+    {
+        return this.products.values();
+    }
+
+    @RequestMapping("/makeNewOrder")
+    public String makeNewOrder(@RequestParam(value="name") String name)
+    {
+        if (!this.orders.containsKey(name))
+        {
+            Order newOrder = new Order(name);
+            this.orders.put(name, newOrder);
+            return "Order " + name + " has been added.";
+        }
+        else
+        {
+            return "Order " + name + " doesn't exist.";
+        }
+    }
 
 }
