@@ -69,4 +69,21 @@ public class WebStore2Controller
             return "Product " + name + " is not in stock.";
         }
     }
+
+    @RequestMapping("/updateProductPrice")
+    public String updateProductPrice(@RequestParam(value="name") String name,
+                                     @RequestParam(value="newPrice") int newPrice)
+    {
+        if (this.products.containsKey(name))
+        {
+            this.products.get(name).setPrice(newPrice);
+            return "Product " + name + "'s price has been updated to " + newPrice;
+        }
+        else
+        {
+            return "Product " + name + " is not in stock.";
+        }
+    }
+
+    
 }
