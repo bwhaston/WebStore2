@@ -54,4 +54,19 @@ public class WebStore2Controller
             return "Product " + oldName + " is not in stock.";
         }
     }
+
+    @RequestMapping("/updateProductDescription")
+    public String updateProductDescription(@RequestParam(value="name") String name,
+                                           @RequestParam(value="newDescription") String newDescription)
+    {
+        if (this.products.containsKey(name))
+        {
+            this.products.get(name).setProductDescription(newDescription);
+            return "Product " + name + "'s description has been updated to " + newDescription;
+        }
+        else
+        {
+            return "Product " + name + " is not in stock.";
+        }
+    }
 }
