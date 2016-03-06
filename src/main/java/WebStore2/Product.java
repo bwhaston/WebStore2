@@ -36,7 +36,7 @@ public class Product
     {
         return this.totalStock;
     }
-    
+
     public void setProductName(String newName)
     {
         this.productName = newName;

@@ -48,7 +48,22 @@ public class WebStore2Controller
         }
         else
         {
-            return "Product " + name + " is not in stock.";
+            return "Product " + name + " does not exist.";
+        }
+    }
+
+    @RequestMapping("/addStockToItem")
+    public String addStockToItem(@RequestParam(value="name") String name,
+                                 @RequestParam(value="stock") int stock)
+    {
+        if (this.products.containsKey(name))
+        {
+            this.products.get(name).addToTotalStock(stock);
+            return "Added " + stock + " more of Product " + name;
+        }
+        else
+        {
+            return "Product " + name + " doesn't exist.";
         }
     }
 
@@ -120,7 +135,6 @@ public class WebStore2Controller
             return "Order " + name + " doesn't exist.";
         }
     }
-
 
 
 }
