@@ -36,4 +36,22 @@ public class WebStore2Controller
             return "The Product " + name + " is already in stock.";
         }
     }
+
+    @RequestMapping("/updateProductName")
+    public String updateProductName(@RequestParam(value="oldName") String oldName,
+                                    @RequestParam(value="newName") String newName)
+    {
+        if (this.products.containsKey(oldName))
+        {
+            Product p = this.products.get(oldName);
+            p.setProductName(newName);
+            this.products.remove(oldName);
+            this.products.put(newName, p);
+            return "Product " +  oldName + "'s new name is " + newName;
+        }
+        else
+        {
+            return "Product " + oldName + " is not in stock.";
+        }
+    }
 }
