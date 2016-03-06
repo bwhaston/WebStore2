@@ -7,12 +7,14 @@ public class Product
     private String productName;
     private String productDescription;
     private int price;
+    int totalStock;
 
-    public Product(String productName, String productDescription, int price)
+    public Product(String productName, String productDescription, int price, int stock)
     {
         this.productName = productName;
         this.productDescription = productDescription;
         this.price = price;
+        this.totalStock = stock;
     }
 
     public String getProductName()
@@ -30,6 +32,11 @@ public class Product
         return this.price;
     }
 
+    public int getTotalStock()
+    {
+        return this.totalStock;
+    }
+    
     public void setProductName(String newName)
     {
         this.productName = newName;
@@ -43,6 +50,23 @@ public class Product
     public void setPrice(int newPrice)
     {
         this.price = newPrice;
+    }
+
+    public void addToTotalStock(int addedStock)
+    {
+        this.totalStock += addedStock;
+    }
+
+    public void removeStock(int removedStock)
+    {
+        if (removedStock >= this.totalStock)
+        {
+            this.totalStock = 0;
+        }
+        else
+        {
+            this.totalStock -= removedStock;
+        }
     }
 
     public String toString()

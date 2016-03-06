@@ -16,7 +16,8 @@ public class WebStore2Controller
     @RequestMapping("/addNewProduct")
     public String addNewProduct(@RequestParam(value="name") String name,
                                  @RequestParam(value="description") String description,
-                                 @RequestParam(value="price") int price)
+                                 @RequestParam(value="price") int price,
+                                 @RequestParam(value="stock") int stock)
     {
         String nameTemplate = "%s";
         String descriptionTemplate = "%s";
@@ -25,7 +26,8 @@ public class WebStore2Controller
         {
             Product newProduct = new Product(String.format(nameTemplate, name),
                                              String.format(descriptionTemplate, description),
-                                             price);
+                                             price,
+                                             stock);
 
             this.products.put(name, newProduct);
             return newProduct.toString();
@@ -118,5 +120,7 @@ public class WebStore2Controller
             return "Order " + name + " doesn't exist.";
         }
     }
+
+
 
 }
