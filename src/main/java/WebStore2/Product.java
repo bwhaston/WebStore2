@@ -51,4 +51,9 @@ public class Product
     {
         this.price = newPrice;
     }
+
+    public String toString()
+    {
+        return this.productName + ", " + this.productDescription + ", " + this.id + ", " + "$" + this.price;
+    }
 }
