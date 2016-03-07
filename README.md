@@ -1,4 +1,6 @@
-This is a version of the web store front assignment. It uses Spring's ability to send GET requests to modify Product and Order data.
+#WebStore2
+
+This is a version of the web storefront assignment. It uses Spring's ability to send GET requests to modify Product and Order data.
 While this usage of GET is not idempotent (that is to say, usage of GET should not modify the program's state, but in this case, it does) 
 I was still able to implement most of the requested functionality.
 
@@ -28,3 +30,5 @@ I was unable to establish persistent data storage because when I added JPL to po
 build errors that I did not understand how to resolve before the deadline.
 
 I was unable to save product prices for the alloted 1 minute limit. As such, there is no system for order confirmation.
+
+While WebStore2 is not an optimal or complete solution, it is more fully featured than WebStore1.
