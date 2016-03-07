@@ -152,7 +152,27 @@ public class WebStore2Controller
         }
     }
 
-
-
-
+    @RequestMapping("/addProductToOrder")
+    public String addProductToOrder(@RequestParam(value="orderName") String orderName,
+                                    @RequestParam(value="productName") String productName,
+                                    @RequestParam(value="quantity") int quantity)
+    {
+        if (this.orders.containsKey(orderName) && this.products.containsKey(productName))
+        {
+            if (quantity <= this.products.get(productName).getTotalStock())
+            {
+                this.orders.get(orderName).addProduct(productName, quantity);
+                this.products.get(productName).removeStock(quantity);
+                return quantity + " of Product " + productName + " added to Order " + orderName;
+            }
+            else
+            {
+                return "There are not enough of Product " + productName + "to fulfill this order.";
+            }
+        }
+        else
+        {
+            return "Product " + productName + " is either not in stock, or is not a part of Order " + orderName;
+        }
+    }
 }

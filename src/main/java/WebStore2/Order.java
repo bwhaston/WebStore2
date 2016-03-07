@@ -19,9 +19,16 @@ public class Order
         return this.products.keySet();
     }
 
-    public void addProduct(Product newProduct, int stock)
+    public void addProduct(String name, int stock)
     {
-        this.products.put(newProduct.getProductName(), stock);
-        this.orderTotal += newProduct.getPrice();
+        this.products.put(name, stock);
+    }
+
+    public void removeProduct(String name)
+    {
+        if (this.products.containsKey(name))
+        {
+            this.products.remove(name);
+        }
     }
 }
