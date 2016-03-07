@@ -175,4 +175,18 @@ public class WebStore2Controller
             return "Product " + productName + " is either not in stock, or is not a part of Order " + orderName;
         }
     }
+
+    @RequestMapping("/removeOrder")
+    public String removeOrder(@RequestParam(value="name") String name)
+    {
+        if (this.orders.containsKey(name))
+        {
+            this.orders.remove(name);
+            return "Order " + name + " was removed.";
+        }
+        else
+        {
+            return "Order " + name + " doesn't exist.";
+        }
+    }
 }
