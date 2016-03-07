@@ -59,11 +59,11 @@ public class Product
 
     public void removeStock(int removedStock)
     {
-        if (removedStock >= this.totalStock)
+        if (removedStock == this.totalStock)
         {
             this.totalStock = 0;
         }
-        else
+        else if (removedStock < this.totalStock)
         {
             this.totalStock -= removedStock;
         }

@@ -1,12 +1,12 @@
 package WebStore2;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Order
 {
     private String name;
-    private HashMap<String, Product> products = new HashMap<String, Product>();
+    private HashMap<String, Integer> products = new HashMap<String, Integer>();
     private int orderTotal;
 
     public Order(String name)
@@ -14,14 +14,14 @@ public class Order
         this.name = name;
     }
 
-    public Collection<Product> getProducts()
+    public Set<String> getProducts()
     {
-        return this.products.values();
+        return this.products.keySet();
     }
 
-    public void addProduct(Product newProduct)
+    public void addProduct(Product newProduct, int stock)
     {
-        this.products.put(newProduct.getProductName(), newProduct);
+        this.products.put(newProduct.getProductName(), stock);
         this.orderTotal += newProduct.getPrice();
     }
 }

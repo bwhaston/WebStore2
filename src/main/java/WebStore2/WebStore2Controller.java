@@ -67,6 +67,22 @@ public class WebStore2Controller
         }
     }
 
+    @RequestMapping("/removeStockFromItem")
+    public String removeStockFromItem(@RequestParam(value="name") String name,
+                                      @RequestParam(value="stock") int stock)
+    {
+        if (this.products.containsKey(name))
+        {
+            if (stock <= this.products.get(name).getTotalStock())
+            this.products.get(name).removeStock(stock);
+            return "Removed " + stock + " of Product " + name;
+        }
+        else
+        {
+            return "You can not remove that many of Product " + name;
+        }
+    }
+
     @RequestMapping("/updateProductName")
     public String updateProductName(@RequestParam(value="oldName") String oldName,
                                     @RequestParam(value="newName") String newName)
@@ -135,6 +151,8 @@ public class WebStore2Controller
             return "Order " + name + " doesn't exist.";
         }
     }
+
+
 
 
 }
