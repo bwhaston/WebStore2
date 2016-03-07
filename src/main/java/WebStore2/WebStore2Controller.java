@@ -189,4 +189,11 @@ public class WebStore2Controller
             return "Order " + name + " doesn't exist.";
         }
     }
+
+    @RequestMapping("/showOrders")
+    public Collection<Order> showOrders()
+    {
+        return this.orders.values();
+    }
+
 }
